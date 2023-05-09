@@ -43,3 +43,24 @@ const MainComponent = () => {
         </>
     )
 }
+
+10. When you use the map method to iterate over an array in react, you have to pass a property called key.
+
+Like this:
+    {bookList.map((book) => {
+        const {img, title, author, id} = book
+        return <Book img={img} author={author} title={title} key={id}/>;
+    })}
+
+This key is a prop that you need to provide. Now, people might use several ways to deal with it, like I did by using a package for generating random key and assigning it as the key value.
+
+And also by using the second default property of a map method:
+    {bookList.map((book, index) => {
+        const {img, title, author, id} = book
+        return <Book img={img} author={author} title={title} key={index}/>
+    })}
+
+Now in this approach, the value of index will vary and you cannot ensure that each of the element will get the same index value every time. Which has happened with me.
+
+So, react will constantly keep rendering the prop repetitively. So, this second approach is not recommended.
+
