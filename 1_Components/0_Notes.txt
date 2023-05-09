@@ -1,0 +1,45 @@
+ Quick notes for reference:
+
+1. Try to break the repetitive part into components. The more you break down a page, the better it is to manage it and make changes in the future. Also facilitates reusing and updating.
+
+2. Whatever asset you will place in the public folder of the react will become instantly available. Create an image file in the react folder to store it. But this is not considered an optimal option as the images stored would not get optimized.
+
+3. If you want to give inline CSS, you have to pass it as a javascript object.
+Example: const styleObj = {display: 'flex'; fontWeight: '400'; fontSize: '3rem';}
+<Component style={styleObj} />
+or
+<Component style={{display: 'flex'; fontWeight: '400'; fontSize: '3rem';}} />
+The values in the object should be of string type.
+
+4. If you give inline CSS for an element, you cannot change it using JS later on as the precedence for inline CSS is higher. When you install some external libraries, they might have used inline CSS and you won't be able to modify them using JS, so keep that in mind while you work with them.
+
+5. Try to avoid inline styles as much as possible. Always go for external CSS.
+
+6. The JSX should be an expression not a statement. 
+So, this is not allowed: <p>{let x = 6}</p>
+This is not allowed because it is a statement.
+While this will be allowed <p>{92+84}</p>
+
+7. To use number, we use curly brackets/JSX syntax.
+<Book title="random title" number={22} /> not "22"
+
+8. For every component there will be a props. And anything you pass while calling that component will be stored as key value pairs in the prop.
+<Book name="Something" copiesSold={230000}/>
+const Book = (prop) => <>{props.name}</>;
+or, const Book = ({name, copiesSold}) => <>{name}</>
+
+9. The children props.
+One of the default props in react is the children prop. Let's say there is a bunch of similar components but you want to make one of them a little bit different. How would you do that?
+You will use the "children" property of props.
+const Button = (props) => <>{props.children}</> {/*When a children props will be passed, it will be rendered.*/}
+const MainComponent = () => {
+    return (
+        <>
+            <Button/> {/*This button has no children component.*/}
+            <Button> {/*This button has a children component.*/}
+                <p>This is the children component body.</p>
+                <button>A button.</button>
+            </Button>
+        </>
+    )
+}
