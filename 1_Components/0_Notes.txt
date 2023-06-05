@@ -2,7 +2,9 @@
 
 1. Try to break the repetitive part into components. The more you break down a page, the better it is to manage it and make changes in the future. Also facilitates reusing and updating.
 
-2. Whatever asset you will place in the public folder of the react will become instantly available. Create an image file in the react folder to store it. But this is not considered an optimal option as the images stored would not get optimized.
+
+2. Whatever asset you will place in the public folder of the react will become instantly available. Create an image file in the react folder to store it. But this is not considered an optimal option as the images stored would not get optimized. Covered further in point 11.
+
 
 3. If you want to give inline CSS, you have to pass it as a javascript object.
 Example: const styleObj = {display: 'flex'; fontWeight: '400'; fontSize: '3rem';}
@@ -11,22 +13,28 @@ or
 <Component style={{display: 'flex'; fontWeight: '400'; fontSize: '3rem';}} />
 The values in the object should be of string type.
 
+
 4. If you give inline CSS for an element, you cannot change it using JS later on as the precedence for inline CSS is higher. When you install some external libraries, they might have used inline CSS and you won't be able to modify them using JS, so keep that in mind while you work with them.
 
+
 5. Try to avoid inline styles as much as possible. Always go for external CSS.
+
 
 6. The JSX should be an expression not a statement. 
 So, this is not allowed: <p>{let x = 6}</p>
 This is not allowed because it is a statement.
 While this will be allowed <p>{92+84}</p>
 
+
 7. To use number, we use curly brackets/JSX syntax.
 <Book title="random title" number={22} /> not "22"
+
 
 8. For every component there will be a props. And anything you pass while calling that component will be stored as key value pairs in the prop.
 <Book name="Something" copiesSold={230000}/>
 const Book = (prop) => <>{props.name}</>;
 or, const Book = ({name, copiesSold}) => <>{name}</>
+
 
 9. The children props.
 One of the default props in react is the children prop. Let's say there is a bunch of similar components but you want to make one of them a little bit different. How would you do that?
@@ -43,6 +51,7 @@ const MainComponent = () => {
         </>
     )
 }
+
 
 10. When you use the map method to iterate over an array in react, you have to pass a property called key.
 
@@ -64,3 +73,34 @@ Now in this approach, the value of index will vary and you cannot ensure that ea
 
 So, react will constantly keep rendering the prop repetitively. So, this second approach is not recommended.
 
+
+11. You should store any images in the src directory. The reason is that react optimizes those images and make there rendering faster. 
+
+You are normally suppose to store images in the public directory. But if you store it there, they won't get optimized by react.
+
+When you put an image in the src folder though, you have to import each one of them. They don't get instantly available like in case of public folder.
+
+Example:
+    import img1 from './images/book-1.jpg';
+    import img2 from './images/book-2.jpg';
+    import img3 from './images/book-3.jpg';
+
+In case of public:
+    export const books = [
+        {
+            author: 'Jordan Moore',
+            title: 'Interesting Facts For Curious Minds',
+            img: './images/book-1.jpg',
+            id: 1,
+        },
+    ]
+
+In case of src:
+    export const books = [
+        {
+            author: 'Jordan Moore',
+            title: 'Interesting Facts For Curious Minds',
+            img: img1,
+            id: 1,
+        },
+    ]
