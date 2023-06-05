@@ -1,0 +1,18 @@
+To create a vite app: (refer https://vitejs.dev/guide/)
+
+
+Step 1: npm create vite@latest my-react-app -- --template react
+
+where  template: vanilla, vanilla-ts, vue, vue-ts, react, react-ts, react-swc, react-swc-ts, preact, preact-ts, lit, lit-ts, svelte, svelte-ts.
+
+
+Step 2: Then change the directory to the app directory you just declared. And hit npm install.
+
+
+Step 3: Instead of npm start, you have "npm run dev" in case of Vite.
+
+Step 4: For an production application you use "npm run build". It will create a dist folder for dev version.
+
+
+Notes: 
+-> One important thing to take note of is that you have to use the extension jsx instead of js. Vite doesn't allow using js for jsx file.

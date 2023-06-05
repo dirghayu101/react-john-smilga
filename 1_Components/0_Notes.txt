@@ -104,3 +104,11 @@ In case of src:
             id: 1,
         },
     ]
+
+Each image will require an import statement.
+
+
+12. To build the production ready application use "npm run build". You can then upload it on netlify.
+
+
+13. CSS is not scoped in a react application. It will load it all together. So, handling CSS is quite tricky, the best way is to use styled components or some framework.
