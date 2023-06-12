@@ -1,0 +1,8 @@
+You can override a specific value using spread operator like in this snippet of code:
+    const MyComponent = () => {
+        const [person, setPerson] = useState({name: "Joshi", age: 21, hobby: "Reading books."});
+
+        const changePerson = () => {
+            setPerson({...person, name: "Rahul"});  //In this case.
+        }
+    }

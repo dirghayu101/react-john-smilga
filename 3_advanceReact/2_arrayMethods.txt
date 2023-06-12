@@ -1,0 +1,5 @@
+This is a revisit to the frequently used array methods in javascript.
+
+1. Filter
+2. Map
+3. Reduce
