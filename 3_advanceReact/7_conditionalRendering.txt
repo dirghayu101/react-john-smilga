@@ -1,0 +1,65 @@
+1-> Developers prefer axios over fetch because, axios is much better when it comes to catching error. 'fetch' won't give you an error if there is 404 code, but that's not the case with axios. It gives you error for all those cases.
+
+2-> Unlike for example Axios, by default, the fetch() API does not consider HTTP status codes in the 4xx or 5xx range to be errors. Instead, it considers these status codes to be indicative of a successful request.
+
+3-> Have a look at this code to understand conditional rendering.
+
+4-> If you have multiple return you have to properly see where you need to destructure an object in case you are using one. Look at the position of the object destructuring happening at the line 50, it cannot take place before that.
+
+Example code:
+
+import { useEffect, useState } from 'react';
+const url = 'https://api.github.com/users/QuincyLarson';
+
+const MultipleReturnsFetchData = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const resp = await fetch(url);
+        // console.log(resp);
+        if (!resp.ok) {             //Since we are using fetch, we have to write this condition.
+          setIsError(true);
+          setIsLoading(false);
+          return;
+        }
+
+        const user = await resp.json();
+        setUser(user);
+      } catch (error) {
+        setIsError(true);
+        // console.log(error);
+      }
+      // hide loading
+      setIsLoading(false);
+    };
+    fetchUser();
+  }, []);
+  // order matters
+  // don't place user JSX before loading or error
+
+  if (isLoading) {
+    return <h2>Loading...</h2>;
+  }
+  if (isError) {
+    return <h2>There was an error...</h2>;
+  }
+  const { avatar_url, name, company, bio } = user;
+  return (
+    <div>
+      <img
+        style={{ width: '150px', borderRadius: '25px' }}
+        src={avatar_url}
+        alt={name}
+      />
+      <h2>{name}</h2>
+      <h4>works at {company}</h4>
+      <p>{bio}</p>
+    </div>
+  );
+};
+export default MultipleReturnsFetchData;
+
