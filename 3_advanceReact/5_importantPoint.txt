@@ -1,0 +1,30 @@
+Let's say you have a function defined and called like this in the body of a component:
+
+    const ExampleComponent = () => {
+        const theFunction = () => {
+            console.log("Hello, World!");
+        }
+        theFunction();
+        return <div>
+            <h1>Hello, Joshi!</h1>
+        </div>
+    }
+
+How many times do you think will theFunction() get called?
+-> It happens during mounting. And also it happens every time when the component re-renders.
+
+Why does this thing matter?
+-> Because this can lead to an infinite loop like in this situation:
+    const ExampleComponent = () => {
+        const [value, setValue] = useState(0);
+        const theFunction = () => {
+            console.log("Hello, World!");
+            setValue(value + 1)
+        }
+        theFunction();
+        return <div>
+            <h1>Hello, Joshi!</h1>
+        </div>
+    }
+
+The setValue method will make it an infinite loop, as the value i.e. state will keep changing and the component will keep re-rendering.

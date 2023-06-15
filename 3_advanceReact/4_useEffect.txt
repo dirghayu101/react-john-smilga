@@ -1,0 +1,54 @@
+1-> useEffect is a hook that assist in performing operations like fetching data, updating DOM, event listeners, etc. 
+
+2-> It has two arguments, the first one is a callback function and the second one is a dependency array.
+If you don't provide the second argument, it wil run on every render and re-render.
+
+3-> Callback cannot return promise so it cannot be asynchronous. Refer case 3 of example.
+
+4-> Dependency array is used to control its behavior.
+
+Example of useEffect:
+
+    const ExampleComponent = () => {
+        
+        const [value, setValue] = useState(0);
+        const [secondValue, setSecondValue] = useState(0)
+
+        // Case 1: This will be called on every render or re-render.
+        useEffect(() => {
+            console.log('hello from useEffect');
+        });
+
+        // Case 2: This will be called only once upon mounting of the component.
+        useEffect(() => {
+            console.log('hello from useEffect');
+        }, []);
+
+        // Case 3: This is not permitted.
+        useEffect(async () => {
+            await someFunction();
+        })
+
+        // Case 4: This is permitted.
+        useEffect(() => {
+            const myFunction = async () => {
+                await doSomething();
+            }
+            myFunction();
+        })
+
+        // Case 5: This will be called when the component mounts and when the state of value changes.
+        useEffect(() => {
+            console.log("Hello, there..");
+        }, [value])
+
+        // Case 6: This will be called when the component mounts and when the state of 'value' or the state of 'secondValue' changes.
+        useEffect(() => {
+            console.log("Hello, there..");
+        }, [value, secondValue])
+
+        return (
+            <div>
+            </div> 
+        )
+    }
