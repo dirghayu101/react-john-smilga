@@ -28,3 +28,34 @@ Why does this thing matter?
     }
 
 The setValue method will make it an infinite loop, as the value i.e. state will keep changing and the component will keep re-rendering.
+
+And also, this is not allowed:
+
+    const Example = () => {
+        const [condition, setCondition] = useState(true);
+        if (condition) {
+            // won't work
+            const [state, setState] = useState(false);
+        }
+        return <h2>example</h2>;
+    };
+
+Because this can lead to a condition of infinite loop again.
+
+This is also not allowed:
+
+const Example = () => {
+  const [condition, setCondition] = useState(true);
+  if (condition) {
+    return <h2>Hello There</h2>;
+  }
+
+  //this will also fail
+  useEffect(() => {
+    console.log('hello there');
+  }, []);
+  
+  return <h2>example</h2>;
+};
+
+You are using useEffect hook after already returning some value.
