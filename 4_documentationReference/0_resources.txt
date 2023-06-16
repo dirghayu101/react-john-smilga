@@ -1,0 +1,3 @@
+Hooks doc refs: https://react.dev/reference/react
+
+Avoiding useEffect: https://react.dev/learn/you-might-not-need-an-effect
