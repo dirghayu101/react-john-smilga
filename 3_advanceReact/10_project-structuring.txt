@@ -1,0 +1,5 @@
+Have a loot at this directory:
+
+/Users/dirghayujoshi/Desktop/Others/coding-thing/react-john-smilga/3_advanceReact/src/03-advanced-react/src/tutorial/04-project-structure
+
+This is how you can setup your code effectively and it makes it much more readable.
