@@ -117,5 +117,5 @@ let nameKey = hasFirstName ? "firstName" : "name";
 let person = {};
 person[nameKey] = "Joshi";
 person["age"] = 21;
-person; //{firstName: "Joshi", age: 21}
+person; //{firstName:  "Joshi", age: 21}
 ```
