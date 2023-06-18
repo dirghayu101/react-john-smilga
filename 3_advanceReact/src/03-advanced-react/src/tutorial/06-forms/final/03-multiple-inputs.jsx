@@ -11,7 +11,7 @@ const MultipleInputs = () => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = () => {};
+  const handleSubmit = () => { };
   return (
     <div>
       <form className='form' onSubmit={handleSubmit}>
