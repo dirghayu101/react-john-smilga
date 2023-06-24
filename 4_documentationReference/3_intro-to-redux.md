@@ -25,10 +25,40 @@ A function that doesn’t change its arguments, or anything outside of itself, i
 
 To modify state, always use this.setState.
 
-6.
+6. By default, React components (both the function type and the class type, if it extends React.Component) will re-render whenever their parent re-renders, or whenever you change their state with setState.
+
+An easy way to optimize a React component for performance is to make it a class, and make it extend React.PureComponent instead of React.Component. This way, the component will only re-render if its state is changed or if its props have changed. It will no longer mindlessly re-render every single time its parent re-renders; it will ONLY re-render if one of its props has changed since the last render.
+
+Here’s where immutability comes in: if you’re passing props into a PureComponent, you have to make sure that those props are updated in an immutable way. That means, if they’re objects or arrays, you’ve gotta replace the entire value with a new (modified) object or array. Just like with Bob – kill it off and replace it with a clone.
+
+7. When you compare two objects or arrays with the === operator, JavaScript is actually comparing the addresses they point to – a.k.a. their references. JS does not even peek into the object. It only compares the references. That’s what “referential equality” means.
+
+8. Does const Prevent Changes?
+   The short answer is: no. Neither let nor const nor var will prevent you from changing the internals of an object. All three ways of declaring a variable allow you to mutate its internals.
+   “But it’s called const! Isn’t that supposed to be constant?”
+   Well, sorta. const will only prevent you from reassigning the reference. It doesn’t stop you from changing the object.
+
+9. How is all this talks about pure-function, mutability and immutability relevant in redux?
+   It is relevant because redux requires that its reducers be pure functions. This means you can’t modify the state directly – you have to create a new state based on the old one.
+
+10. It's quite tricky to copy a mutable object in javascript. Look at this example:
+
+    ```js
+    // Internal properties are left alone:
+    let company = {
+      name: "Foo Corp",
+      people: [{ name: "Joe" }, { name: "Alice" }],
+    };
+    let newCompany = { ...company };
+    newCompany === company; // => false! not the same object
+    newCompany.people === company.people; // => true!
+    ```
+
+11.
 
 References:
 
 1. https://changelog.com/posts/when-and-when-not-to-reach-for-redux
 2. https://daveceddia.com/javascript-references/
-3.
+3. https://daveceddia.com/react-redux-immutability-guide/#what-is-immutability -> Best.
+4.
