@@ -1,3 +1,7 @@
 Hooks doc refs: https://react.dev/reference/react
 
 Avoiding useEffect: https://react.dev/learn/you-might-not-need-an-effect
+
+About props: https://react.dev/learn/passing-props-to-a-component
+
+Promise and asynchronous JS basics: https://javascript.info/promise-basics
